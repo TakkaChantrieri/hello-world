@@ -6,585 +6,161 @@
   <title>次世代・最適化ロジスティクス｜プロメーテウス合同会社 × 塚本郵便逓送</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy: #0d1f4e;
-      --navy-dark: #08142f;
-      --navy-mid: #162a6e;
-      --orange: #f5720a;
-      --orange-light: #ff8c2a;
-      --orange-pale: #fff4ec;
-      --white: #ffffff;
-      --gray-light: #f5f7fa;
-      --gray: #6b7280;
-      --text: #1a202c;
+      --navy: #0d1f4e; --navy-dark: #08142f; --navy-mid: #162a6e;
+      --orange: #f5720a; --orange-light: #ff8c2a; --orange-pale: #fff4ec;
+      --white: #ffffff; --gray-light: #f5f7fa; --gray: #6b7280; --text: #1a202c;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP','Yu Gothic',sans-serif; color: var(--text); line-height: 1.7; overflow-x: hidden; }
 
-    body {
-      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ======== HEADER ======== */
-    header {
-      background: var(--navy-dark);
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    }
-
-    .header-logo {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .header-logo .co-names {
-      font-size: 10px;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.03em;
-    }
-
-    .header-logo .service-name {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: 0.05em;
-    }
-
+    /* HEADER */
+    header { background: var(--navy-dark); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+    .header-logo { display: flex; flex-direction: column; gap: 2px; }
+    .header-logo .co-names { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 0.03em; }
+    .header-logo .service-name { font-size: 14px; font-weight: 800; color: var(--white); letter-spacing: 0.05em; }
     .header-logo .service-name span { color: var(--orange); }
-
-    .header-cta {
-      background: var(--orange);
-      color: var(--white);
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 0.2s, transform 0.15s;
-    }
-
+    .header-cta { background: var(--orange); color: var(--white); padding: 10px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
     .header-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
 
-    /* ======== HERO ======== */
-    .hero {
-      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 60%, #1a3a8a 100%);
-      padding: 80px 24px 72px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 60%, #1a3a8a 100%); padding: 80px 24px 40px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; }
+    .hero-badge { display: inline-block; background: var(--orange); color: var(--white); font-size: 12px; font-weight: 700; padding: 6px 18px; border-radius: 50px; letter-spacing: 0.1em; margin-bottom: 24px; }
+    .hero-target { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 12px; letter-spacing: 0.05em; }
+    .hero h1 { font-size: clamp(26px, 5.5vw, 52px); font-weight: 900; color: var(--white); line-height: 1.3; margin-bottom: 16px; letter-spacing: -0.01em; }
+    .hero h1 .highlight { color: var(--orange); }
+    .hero-sub { font-size: clamp(14px, 2.5vw, 18px); color: rgba(255,255,255,0.8); margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 800px; margin: 0 auto 40px; }
+    .stat-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 24px 16px; backdrop-filter: blur(4px); }
+    .stat-card .num { font-size: clamp(32px, 6vw, 56px); font-weight: 900; color: var(--orange); line-height: 1; display: block; }
+    .stat-card .unit { font-size: clamp(14px, 2.5vw, 22px); font-weight: 900; color: var(--orange); }
+    .stat-card .label { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 8px; display: block; line-height: 1.5; }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
+    /* HERO TRUCK */
+    .hero-truck-wrap { position: relative; max-width: 720px; margin: 0 auto 44px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45)); }
+    .hero-truck-wrap svg { width: 100%; height: auto; display: block; }
 
-    .hero-badge {
-      display: inline-block;
-      background: var(--orange);
-      color: var(--white);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 6px 18px;
-      border-radius: 50px;
-      letter-spacing: 0.1em;
-      margin-bottom: 24px;
-    }
+    .hero-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; padding-bottom: 16px; }
+    .btn-primary { display: inline-block; background: var(--orange); color: var(--white); padding: 18px 48px; border-radius: 50px; font-size: 18px; font-weight: 800; text-decoration: none; letter-spacing: 0.05em; box-shadow: 0 6px 32px rgba(245,114,10,0.45); transition: all 0.2s; }
+    .btn-primary:hover { background: var(--orange-light); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(245,114,10,0.55); }
+    .btn-note { font-size: 12px; color: rgba(255,255,255,0.55); }
 
-    .hero-target {
-      font-size: 15px;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
-    }
-
-    .hero h1 {
-      font-size: clamp(26px, 5.5vw, 52px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.3;
-      margin-bottom: 16px;
-      letter-spacing: -0.01em;
-    }
-
-    .hero h1 .highlight {
-      color: var(--orange);
-      position: relative;
-    }
-
-    .hero-sub {
-      font-size: clamp(14px, 2.5vw, 18px);
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 48px;
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ======== HERO STATS ======== */
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 800px;
-      margin: 0 auto 48px;
-    }
-
-    .stat-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 16px;
-      padding: 24px 16px;
-      backdrop-filter: blur(4px);
-    }
-
-    .stat-card .num {
-      font-size: clamp(32px, 6vw, 56px);
-      font-weight: 900;
-      color: var(--orange);
-      line-height: 1;
-      display: block;
-    }
-
-    .stat-card .unit {
-      font-size: clamp(14px, 2.5vw, 22px);
-      font-weight: 900;
-      color: var(--orange);
-    }
-
-    .stat-card .label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      margin-top: 8px;
-      display: block;
-      line-height: 1.5;
-    }
-
-    .hero-cta-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--orange);
-      color: var(--white);
-      padding: 18px 48px;
-      border-radius: 50px;
-      font-size: 18px;
-      font-weight: 800;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      box-shadow: 0 6px 32px rgba(245,114,10,0.45);
-      transition: all 0.2s;
-    }
-
-    .btn-primary:hover {
-      background: var(--orange-light);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 40px rgba(245,114,10,0.55);
-    }
-
-    .btn-note {
-      font-size: 12px;
-      color: rgba(255,255,255,0.55);
-    }
-
-    /* ======== SECTION BASE ======== */
+    /* SECTION BASE */
     section { padding: 80px 24px; }
-
     .section-inner { max-width: 960px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      color: var(--orange);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(22px, 4vw, 38px);
-      font-weight: 900;
-      color: var(--navy);
-      line-height: 1.35;
-      margin-bottom: 16px;
-    }
-
+    .section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; color: var(--orange); text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-size: clamp(22px, 4vw, 38px); font-weight: 900; color: var(--navy); line-height: 1.35; margin-bottom: 16px; }
     .section-title span { color: var(--orange); }
+    .section-desc { font-size: 15px; color: var(--gray); max-width: 640px; }
 
-    .section-desc {
-      font-size: 15px;
-      color: var(--gray);
-      max-width: 640px;
-    }
-
-    /* ======== PROBLEM ======== */
-    .problem { background: var(--gray-light); }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 40px;
-    }
-
-    .problem-item {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 24px 20px;
-      border-left: 4px solid var(--orange);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
+    /* PROBLEM */
+    .problem { background: var(--gray-light); position: relative; overflow: hidden; }
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 40px; }
+    .problem-item { background: var(--white); border-radius: 12px; padding: 24px 20px; border-left: 4px solid var(--orange); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
     .problem-item .icon { font-size: 28px; margin-bottom: 10px; }
+    .problem-item p { font-size: 14px; font-weight: 700; color: var(--text); }
+    .prob-deco { position: absolute; pointer-events: none; opacity: 0.07; }
+    .prob-deco-r { bottom: -20px; right: -10px; width: 180px; transform: rotate(14deg); }
+    .prob-deco-l { top: 10px; left: -20px; width: 120px; transform: rotate(-20deg); }
 
-    .problem-item p {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    /* ======== STRENGTHS ======== */
+    /* STRENGTHS */
     .strengths { background: var(--white); }
+    .strength-list { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 48px; }
+    .strength-item { display: grid; grid-template-columns: 80px 1fr; gap: 24px; align-items: start; background: var(--gray-light); border-radius: 20px; padding: 32px; border: 1px solid #e8ecf3; transition: box-shadow 0.2s, transform 0.2s; }
+    .strength-item:hover { box-shadow: 0 8px 32px rgba(13,31,78,0.1); transform: translateY(-2px); }
+    .strength-num { width: 72px; height: 72px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 900; color: var(--orange); flex-shrink: 0; }
+    .str-icon-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+    .str-icon { width: 40px; height: 40px; flex-shrink: 0; margin-top: 2px; }
+    .str-icon-row h3 { margin-bottom: 0; font-size: 17px; font-weight: 800; color: var(--navy); line-height: 1.4; }
+    .strength-content p { font-size: 14px; color: var(--gray); line-height: 1.8; }
 
-    .strength-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    .strength-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 24px;
-      align-items: start;
-      background: var(--gray-light);
-      border-radius: 20px;
-      padding: 32px;
-      border: 1px solid #e8ecf3;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .strength-item:hover {
-      box-shadow: 0 8px 32px rgba(13,31,78,0.1);
-      transform: translateY(-2px);
-    }
-
-    .strength-num {
-      width: 72px;
-      height: 72px;
-      background: var(--navy);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      font-weight: 900;
-      color: var(--orange);
-      flex-shrink: 0;
-    }
-
-    .strength-content h3 {
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-
-    .strength-content p {
-      font-size: 14px;
-      color: var(--gray);
-      line-height: 1.8;
-    }
-
-    .strength-content .big-stat {
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 900;
-      color: var(--orange);
-      display: inline;
-    }
-
-    .strength-content .big-stat-unit {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--orange);
-    }
-
-    /* ======== NUMBERS BAND ======== */
-    .numbers-band {
-      background: linear-gradient(135deg, var(--navy-dark), var(--navy-mid));
-      padding: 64px 24px;
-    }
-
-    .numbers-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      max-width: 960px;
-      margin: 40px auto 0;
-    }
-
-    .number-block {
-      padding: 36px 24px;
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
+    /* NUMBERS BAND */
+    .numbers-band { background: linear-gradient(135deg, var(--navy-dark), var(--navy-mid)); padding: 64px 24px; position: relative; overflow: hidden; }
+    .warehouse-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; display: flex; align-items: flex-end; }
+    .warehouse-bg svg { width: 100%; height: auto; display: block; }
+    .numbers-band .section-inner { position: relative; z-index: 1; }
+    .numbers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 960px; margin: 40px auto 0; position: relative; z-index: 1; }
+    .number-block { padding: 36px 24px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
     .number-block:nth-child(3n) { border-right: none; }
     .number-block:nth-child(n+4) { border-bottom: none; }
+    .number-block .n { font-size: clamp(36px, 5vw, 60px); font-weight: 900; color: var(--orange); line-height: 1; }
+    .number-block .n sub { font-size: 0.45em; vertical-align: baseline; font-weight: 700; }
+    .number-block .nl { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 8px; line-height: 1.6; }
 
-    .number-block .n {
-      font-size: clamp(36px, 5vw, 60px);
-      font-weight: 900;
-      color: var(--orange);
-      line-height: 1;
-    }
-
-    .number-block .n sub {
-      font-size: 0.45em;
-      vertical-align: baseline;
-      font-weight: 700;
-    }
-
-    .number-block .nl {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      margin-top: 8px;
-      line-height: 1.6;
-    }
-
-    /* ======== FLOW ======== */
+    /* FLOW */
     .flow { background: var(--gray-light); }
-
-    .flow-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0;
-      margin-top: 48px;
-      position: relative;
-    }
-
-    .flow-step {
-      text-align: center;
-      padding: 32px 20px;
-      position: relative;
-    }
-
-    .flow-step::after {
-      content: '→';
-      position: absolute;
-      right: -12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 24px;
-      color: var(--orange);
-      font-weight: 900;
-    }
-
+    .flow-head-deco { display: flex; align-items: center; gap: 20px; margin-bottom: 8px; }
+    .flow-head-deco svg { flex-shrink: 0; opacity: 0.9; }
+    .flow-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; margin-top: 48px; position: relative; }
+    .flow-step { text-align: center; padding: 32px 20px; position: relative; }
+    .flow-step::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--orange); font-weight: 900; }
     .flow-step:last-child::after { display: none; }
+    .flow-step-num { width: 52px; height: 52px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; color: var(--white); margin: 0 auto 16px; }
+    .flow-step h3 { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .flow-step p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+    .flow-pkg-row { display: flex; justify-content: center; gap: 12px; margin-top: 40px; opacity: 0.55; }
 
-    .flow-step-num {
-      width: 52px;
-      height: 52px;
-      background: var(--orange);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--white);
-      margin: 0 auto 16px;
-    }
-
-    .flow-step h3 {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .flow-step p {
-      font-size: 13px;
-      color: var(--gray);
-      line-height: 1.7;
-    }
-
-    /* ======== CTA SECTION ======== */
-    .cta-section {
-      background: linear-gradient(135deg, var(--navy-dark) 0%, #1a3a8a 100%);
-      padding: 96px 24px;
-      text-align: center;
-    }
-
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, var(--navy-dark) 0%, #1a3a8a 100%); padding: 96px 24px; text-align: center; position: relative; overflow: hidden; }
+    .cta-deco { position: absolute; pointer-events: none; }
+    .cta-deco-globe { top: -60px; right: -80px; width: 340px; opacity: 0.06; }
+    .cta-deco-box1 { bottom: 20px; left: 20px; width: 80px; opacity: 0.08; transform: rotate(18deg); }
+    .cta-deco-box2 { bottom: 60px; left: 110px; width: 55px; opacity: 0.06; transform: rotate(-10deg); }
+    .cta-section .section-inner { position: relative; z-index: 1; }
     .cta-section .section-title { color: var(--white); }
-
-    .cta-section .section-desc {
-      color: rgba(255,255,255,0.7);
-      margin: 0 auto 48px;
-    }
-
-    .contact-card {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 48px 40px;
-      max-width: 600px;
-      margin: 48px auto 0;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-
-    .contact-card h3 {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 28px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid #e8ecf3;
-    }
-
-    .contact-info-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .contact-info-row .ci-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--orange-pale);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-
-    .contact-info-row a {
-      color: var(--navy);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
+    .cta-section .section-desc { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
+    .contact-card { background: var(--white); border-radius: 24px; padding: 48px 40px; max-width: 600px; margin: 48px auto 0; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .contact-card h3 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 28px; padding-bottom: 20px; border-bottom: 2px solid #e8ecf3; }
+    .contact-info-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 15px; color: var(--text); }
+    .contact-info-row .ci-icon { width: 36px; height: 36px; background: var(--orange-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .contact-info-row a { color: var(--navy); text-decoration: none; font-weight: 600; }
     .contact-info-row a:hover { color: var(--orange); }
+    .contact-card .btn-primary { width: 100%; text-align: center; margin-top: 28px; font-size: 16px; padding: 16px 32px; }
 
-    .contact-card .btn-primary {
-      width: 100%;
-      text-align: center;
-      margin-top: 28px;
-      font-size: 16px;
-      padding: 16px 32px;
-    }
+    /* FOOTER */
+    footer { background: var(--navy-dark); padding: 32px 24px; text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; line-height: 1.8; }
 
-    /* ======== FOOTER ======== */
-    footer {
-      background: var(--navy-dark);
-      padding: 32px 24px;
-      text-align: center;
-      color: rgba(255,255,255,0.4);
-      font-size: 12px;
-      line-height: 1.8;
-    }
+    /* FLOAT CTA */
+    .float-cta { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 200; background: var(--orange); color: var(--white); padding: 14px 36px; border-radius: 50px; font-size: 15px; font-weight: 800; text-decoration: none; box-shadow: 0 6px 28px rgba(245,114,10,0.5); white-space: nowrap; animation: pulse 2.5s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 6px 28px rgba(245,114,10,0.5); } 50% { box-shadow: 0 6px 40px rgba(245,114,10,0.8); } }
 
-    /* ======== FLOATING CTA ======== */
-    .float-cta {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
-      background: var(--orange);
-      color: var(--white);
-      padding: 14px 36px;
-      border-radius: 50px;
-      font-size: 15px;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 6px 28px rgba(245,114,10,0.5);
-      white-space: nowrap;
-      animation: pulse 2.5s infinite;
-    }
+    /* DIVIDER */
+    .orange-divider { height: 4px; background: linear-gradient(90deg, var(--orange), var(--orange-light), var(--orange)); }
 
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 6px 28px rgba(245,114,10,0.5); }
-      50% { box-shadow: 0 6px 40px rgba(245,114,10,0.8); }
-    }
-
-    /* ======== RESPONSIVE ======== */
+    /* RESPONSIVE */
     @media (max-width: 640px) {
       header { padding: 12px 16px; }
       .header-cta { padding: 8px 14px; font-size: 12px; }
-
       section { padding: 60px 16px; }
-
-      .hero { padding: 60px 16px 56px; }
-
+      .hero { padding: 60px 16px 32px; }
       .hero-stats { grid-template-columns: 1fr; gap: 12px; }
-
       .stat-card { padding: 20px 16px; display: flex; align-items: center; gap: 16px; text-align: left; }
       .stat-card .label { margin-top: 2px; }
-
-      .strength-item {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 24px 20px;
-      }
-
+      .hero-truck-wrap { margin-bottom: 32px; }
+      .strength-item { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px; }
       .strength-num { width: 52px; height: 52px; font-size: 22px; }
-
+      .str-icon { width: 34px; height: 34px; }
       .flow-step::after { display: none; }
-
       .contact-card { padding: 32px 24px; }
-
       .numbers-grid { grid-template-columns: repeat(2, 1fr); }
-      .number-block { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
       .number-block:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.1); }
+      .number-block:nth-child(n+4) { border-bottom: 1px solid rgba(255,255,255,0.1); }
       .number-block:nth-child(2n) { border-right: none; }
       .number-block:nth-child(n+5) { border-bottom: none; }
-
       .float-cta { display: block; }
+      .prob-deco { display: none; }
+      .cta-deco { display: none; }
+      .flow-pkg-row { display: none; }
     }
-
     @media (min-width: 641px) and (max-width: 900px) {
       .hero-stats { grid-template-columns: repeat(3, 1fr); }
       .strength-item { grid-template-columns: 72px 1fr; }
-    }
-
-    /* ======== DIVIDER ======== */
-    .orange-divider {
-      height: 4px;
-      background: linear-gradient(90deg, var(--orange), var(--orange-light), var(--orange));
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="header-logo">
     <span class="co-names">プロメーテウス合同会社 × 塚本郵便逓送株式会社</span>
@@ -593,19 +169,11 @@
   <a href="#contact" class="header-cta">無料診断を受ける</a>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-badge">月800個口以上のEC事業者様へ</div>
   <p class="hero-target">配送コストに課題を感じていませんか？</p>
-  <h1>
-    配送コストを<br>
-    <span class="highlight">最低5%以上</span>、確実に削減する<br>
-    次世代ロジスティクス
-  </h1>
-  <p class="hero-sub">
-    富山発・全国対応。誤出荷率業界最低水準の完全管理体制で、<br>
-    御社の物流を根本から最適化します。
-  </p>
+  <h1>配送コストを<br><span class="highlight">最低5%以上</span>、確実に削減する<br>次世代ロジスティクス</h1>
+  <p class="hero-sub">富山発・全国対応。誤出荷率業界最低水準の完全管理体制で、<br>御社の物流を根本から最適化します。</p>
 
   <div class="hero-stats">
     <div class="stat-card">
@@ -628,6 +196,83 @@
     </div>
   </div>
 
+  <!-- TRUCK ILLUSTRATION -->
+  <div class="hero-truck-wrap">
+    <svg viewBox="0 0 600 215" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <!-- Ground shadow -->
+      <ellipse cx="295" cy="207" rx="265" ry="8" fill="rgba(0,0,0,0.22)"/>
+      <!-- Speed lines -->
+      <line x1="0" y1="145" x2="72" y2="145" stroke="#f5720a" stroke-width="2.5" stroke-dasharray="22 12" opacity="0.45"/>
+      <line x1="0" y1="135" x2="52" y2="135" stroke="#f5720a" stroke-width="1.5" stroke-dasharray="16 14" opacity="0.28"/>
+      <line x1="0" y1="155" x2="58" y2="155" stroke="#f5720a" stroke-width="1" stroke-dasharray="12 16" opacity="0.2"/>
+      <line x1="0" y1="125" x2="38" y2="125" stroke="#f5720a" stroke-width="1" stroke-dasharray="10 18" opacity="0.15"/>
+      <!-- TRAILER body -->
+      <rect x="18" y="26" width="348" height="142" rx="8" fill="#162a6e"/>
+      <!-- Orange stripe top -->
+      <rect x="18" y="26" width="348" height="11" rx="6" fill="#f5720a"/>
+      <!-- Orange stripe bottom -->
+      <rect x="18" y="157" width="348" height="7" rx="4" fill="rgba(245,114,10,0.38)"/>
+      <!-- Rib lines -->
+      <line x1="78" y1="37" x2="78" y2="157" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="138" y1="37" x2="138" y2="157" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="198" y1="37" x2="198" y2="157" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="258" y1="37" x2="258" y2="157" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <line x1="318" y1="37" x2="318" y2="157" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+      <!-- Logo area on trailer -->
+      <rect x="36" y="68" width="158" height="64" rx="6" fill="rgba(245,114,10,0.1)" stroke="rgba(245,114,10,0.22)" stroke-width="1.5"/>
+      <text x="115" y="94" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="Arial,sans-serif" font-size="9" font-weight="bold" letter-spacing="1.5">PROMETHEUS</text>
+      <text x="115" y="109" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-family="Arial,sans-serif" font-size="7.5">× TSUKAMOTO</text>
+      <text x="115" y="122" text-anchor="middle" fill="rgba(245,114,10,0.7)" font-family="Arial,sans-serif" font-size="7" letter-spacing="1">LOGISTICS</text>
+      <!-- CAB connector -->
+      <rect x="360" y="50" width="18" height="117" fill="#0a1840"/>
+      <!-- CAB body -->
+      <path d="M374 40 L486 40 L524 82 L524 168 L374 168 Z" fill="#0d2060"/>
+      <!-- CAB orange top wedge -->
+      <path d="M374 40 L486 40 L524 82 L374 82 Z" fill="#f5720a"/>
+      <!-- Windshield -->
+      <path d="M384 52 L474 52 L510 80 L384 80 Z" fill="#7ec8f0" opacity="0.48"/>
+      <!-- Windshield glare -->
+      <line x1="400" y1="57" x2="418" y2="76" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="422" y1="57" x2="434" y2="70" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Side window -->
+      <rect x="378" y="94" width="76" height="43" rx="5" fill="#7ec8f0" opacity="0.4"/>
+      <line x1="388" y1="98" x2="394" y2="134" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <!-- Side mirror -->
+      <rect x="378" y="70" width="13" height="10" rx="2" fill="#081035"/>
+      <rect x="372" y="68" width="5" height="20" rx="2.5" fill="#081035"/>
+      <!-- Cab door line -->
+      <line x1="456" y1="84" x2="456" y2="168" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+      <!-- Door handle -->
+      <rect x="460" y="128" width="22" height="5" rx="2.5" fill="rgba(255,255,255,0.5)"/>
+      <!-- Exhaust stack -->
+      <rect x="494" y="18" width="8" height="26" rx="4" fill="#081035"/>
+      <circle cx="498" cy="16" r="5" fill="rgba(255,255,255,0.1)"/>
+      <circle cx="495" cy="9" r="4" fill="rgba(255,255,255,0.07)"/>
+      <circle cx="500" cy="4" r="3" fill="rgba(255,255,255,0.05)"/>
+      <!-- Headlight -->
+      <rect x="516" y="96" width="9" height="23" rx="3" fill="#ffe566"/>
+      <!-- Fog light -->
+      <rect x="516" y="122" width="9" height="12" rx="2" fill="rgba(255,220,50,0.55)"/>
+      <!-- Grille -->
+      <rect x="516" y="136" width="9" height="34" rx="2" fill="#081035"/>
+      <line x1="517" y1="142" x2="524" y2="142" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"/>
+      <line x1="517" y1="149" x2="524" y2="149" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"/>
+      <line x1="517" y1="156" x2="524" y2="156" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"/>
+      <!-- Front bumper -->
+      <rect x="515" y="162" width="12" height="10" rx="3" fill="#f5720a"/>
+      <!-- Wheel helper: draws one wheel -->
+      <!-- Rear trailer pair -->
+      <circle cx="76" cy="183" r="22" fill="#08142f"/><circle cx="76" cy="183" r="22" stroke="#f5720a" stroke-width="3.5" fill="none"/><circle cx="76" cy="183" r="9" fill="#162a6e"/><line x1="68" y1="175" x2="84" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="84" y1="175" x2="68" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="76" cy="183" r="3.5" fill="#f5720a"/>
+      <circle cx="120" cy="183" r="22" fill="#08142f"/><circle cx="120" cy="183" r="22" stroke="#f5720a" stroke-width="3.5" fill="none"/><circle cx="120" cy="183" r="9" fill="#162a6e"/><line x1="112" y1="175" x2="128" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="128" y1="175" x2="112" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="120" cy="183" r="3.5" fill="#f5720a"/>
+      <!-- Front trailer pair -->
+      <circle cx="268" cy="183" r="22" fill="#08142f"/><circle cx="268" cy="183" r="22" stroke="#f5720a" stroke-width="3.5" fill="none"/><circle cx="268" cy="183" r="9" fill="#162a6e"/><line x1="260" y1="175" x2="276" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="276" y1="175" x2="260" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="268" cy="183" r="3.5" fill="#f5720a"/>
+      <circle cx="312" cy="183" r="22" fill="#08142f"/><circle cx="312" cy="183" r="22" stroke="#f5720a" stroke-width="3.5" fill="none"/><circle cx="312" cy="183" r="9" fill="#162a6e"/><line x1="304" y1="175" x2="320" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="320" y1="175" x2="304" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="312" cy="183" r="3.5" fill="#f5720a"/>
+      <!-- Cab wheels -->
+      <circle cx="432" cy="183" r="22" fill="#08142f"/><circle cx="432" cy="183" r="22" stroke="#f5720a" stroke-width="3.5" fill="none"/><circle cx="432" cy="183" r="9" fill="#162a6e"/><line x1="424" y1="175" x2="440" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="440" y1="175" x2="424" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="432" cy="183" r="3.5" fill="#f5720a"/>
+      <circle cx="476" cy="183" r="22" fill="#08142f"/><circle cx="476" cy="183" r="22" stroke="#f5720a" stroke-width="3.5" fill="none"/><circle cx="476" cy="183" r="9" fill="#162a6e"/><line x1="468" y1="175" x2="484" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><line x1="484" y1="175" x2="468" y2="191" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/><circle cx="476" cy="183" r="3.5" fill="#f5720a"/>
+    </svg>
+  </div>
+
   <div class="hero-cta-wrap">
     <a href="#contact" class="btn-primary">無料・物流コスト診断を受ける →</a>
     <span class="btn-note">診断は完全無料・しつこい営業は一切ありません</span>
@@ -638,69 +283,106 @@
 
 <!-- PROBLEM -->
 <section class="problem">
+  <!-- Decorative boxes -->
+  <div class="prob-deco prob-deco-r">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <polygon points="50,8 90,28 50,48 10,28" fill="#f5720a"/>
+      <polygon points="10,28 50,48 50,92 10,72" fill="#0d1f4e"/>
+      <polygon points="90,28 50,48 50,92 90,72" fill="#162a6e"/>
+      <line x1="50" y1="8" x2="50" y2="48" stroke="white" stroke-width="2.5" opacity="0.35"/>
+      <line x1="10" y1="28" x2="90" y2="28" stroke="white" stroke-width="2.5" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="prob-deco prob-deco-l">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <polygon points="50,8 90,28 50,48 10,28" fill="#f5720a"/>
+      <polygon points="10,28 50,48 50,92 10,72" fill="#0d1f4e"/>
+      <polygon points="90,28 50,48 50,92 90,72" fill="#162a6e"/>
+      <line x1="50" y1="8" x2="50" y2="48" stroke="white" stroke-width="2.5" opacity="0.35"/>
+      <line x1="10" y1="28" x2="90" y2="28" stroke="white" stroke-width="2.5" opacity="0.35"/>
+    </svg>
+  </div>
   <div class="section-inner">
     <p class="section-label">こんなお悩みはありませんか？</p>
     <h2 class="section-title">EC物流の<span>コスト・品質問題</span>、<br>もう諦めていませんか？</h2>
     <div class="problem-grid">
-      <div class="problem-item">
-        <div class="icon">📦</div>
-        <p>配送料の値上がりで利益率が年々悪化している</p>
-      </div>
-      <div class="problem-item">
-        <div class="icon">⚠️</div>
-        <p>誤出荷・遅延クレームが後を絶たない</p>
-      </div>
-      <div class="problem-item">
-        <div class="icon">🏭</div>
-        <p>倉庫スペースが足りず、保管コストが膨らんでいる</p>
-      </div>
-      <div class="problem-item">
-        <div class="icon">🌐</div>
-        <p>海外向けEC・冷凍冷蔵品の対応が難しい</p>
-      </div>
-      <div class="problem-item">
-        <div class="icon">🔍</div>
-        <p>自社の物流コストが適正かどうか分からない</p>
-      </div>
-      <div class="problem-item">
-        <div class="icon">🛡️</div>
-        <p>災害・物流停止リスクへの備えができていない</p>
-      </div>
+      <div class="problem-item"><div class="icon">📦</div><p>配送料の値上がりで利益率が年々悪化している</p></div>
+      <div class="problem-item"><div class="icon">⚠️</div><p>誤出荷・遅延クレームが後を絶たない</p></div>
+      <div class="problem-item"><div class="icon">🏭</div><p>倉庫スペースが足りず、保管コストが膨らんでいる</p></div>
+      <div class="problem-item"><div class="icon">🌐</div><p>海外向けEC・冷凍冷蔵品の対応が難しい</p></div>
+      <div class="problem-item"><div class="icon">🔍</div><p>自社の物流コストが適正かどうか分からない</p></div>
+      <div class="problem-item"><div class="icon">🛡️</div><p>災害・物流停止リスクへの備えができていない</p></div>
     </div>
   </div>
 </section>
 
 <!-- NUMBERS BAND -->
 <div class="numbers-band">
+  <!-- Warehouse silhouette background -->
+  <div class="warehouse-bg">
+    <svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMax slice">
+      <!-- Left building -->
+      <polygon points="0,115 150,50 300,115" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="rgba(255,255,255,0.03)"/>
+      <rect x="0" y="115" width="300" height="165" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="rgba(255,255,255,0.02)"/>
+      <rect x="20" y="215" width="55" height="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="90" y="215" width="55" height="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="200" y="215" width="55" height="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="20" y="138" width="44" height="32" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="80" y="138" width="44" height="32" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="200" y="138" width="44" height="32" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <!-- Main center building -->
+      <polygon points="240,75 600,15 960,75" stroke="rgba(255,255,255,0.09)" stroke-width="1.5" fill="rgba(255,255,255,0.03)"/>
+      <rect x="240" y="75" width="720" height="205" stroke="rgba(255,255,255,0.09)" stroke-width="1.5" fill="rgba(255,255,255,0.02)"/>
+      <rect x="270" y="200" width="72" height="80" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="375" y="200" width="72" height="80" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="480" y="200" width="72" height="80" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="660" y="200" width="72" height="80" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="765" y="200" width="72" height="80" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="870" y="200" width="72" height="80" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="290" y="100" width="50" height="36" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="400" y="100" width="50" height="36" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="510" y="100" width="50" height="36" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="680" y="100" width="50" height="36" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="790" y="100" width="50" height="36" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="900" y="100" width="50" height="36" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <line x1="360" y1="75" x2="360" y2="280" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="480" y1="75" x2="480" y2="280" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="600" y1="75" x2="600" y2="280" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="720" y1="75" x2="720" y2="280" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="840" y1="75" x2="840" y2="280" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <!-- Right building -->
+      <polygon points="900,105 1050,45 1200,105" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="rgba(255,255,255,0.03)"/>
+      <rect x="900" y="105" width="300" height="175" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="rgba(255,255,255,0.02)"/>
+      <rect x="920" y="215" width="55" height="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="1010" y="215" width="55" height="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <rect x="1100" y="215" width="55" height="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <!-- Truck silhouettes -->
+      <rect x="340" y="250" width="85" height="30" rx="3" fill="rgba(255,255,255,0.04)"/>
+      <rect x="418" y="258" width="35" height="22" rx="2" fill="rgba(255,255,255,0.04)"/>
+      <circle cx="355" cy="282" r="5" fill="rgba(255,255,255,0.05)"/>
+      <circle cx="400" cy="282" r="5" fill="rgba(255,255,255,0.05)"/>
+      <circle cx="435" cy="282" r="5" fill="rgba(255,255,255,0.05)"/>
+      <rect x="680" y="250" width="85" height="30" rx="3" fill="rgba(255,255,255,0.04)"/>
+      <rect x="758" y="258" width="35" height="22" rx="2" fill="rgba(255,255,255,0.04)"/>
+      <circle cx="695" cy="282" r="5" fill="rgba(255,255,255,0.05)"/>
+      <circle cx="740" cy="282" r="5" fill="rgba(255,255,255,0.05)"/>
+      <circle cx="775" cy="282" r="5" fill="rgba(255,255,255,0.05)"/>
+      <!-- Ground -->
+      <line x1="0" y1="280" x2="1200" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+    </svg>
+  </div>
+
   <div class="section-inner" style="text-align:center;">
     <p class="section-label" style="color:var(--orange);">実績・数字で見る安心感</p>
     <h2 class="section-title" style="color:var(--white);">数字が証明する、<span>圧倒的な実績</span></h2>
   </div>
   <div class="numbers-grid">
-    <div class="number-block">
-      <div class="n">95<sub>%</sub></div>
-      <div class="nl">最低5%削減<br>達成確率</div>
-    </div>
-    <div class="number-block">
-      <div class="n">20<sub>%+</sub></div>
-      <div class="nl">60・80サイズ<br>コスト削減実績</div>
-    </div>
-    <div class="number-block">
-      <div class="n" style="font-size:clamp(24px,3.5vw,44px);">0.00088<sub>%</sub></div>
-      <div class="nl">誤出荷率<br>（業界目標比1/11）</div>
-    </div>
-    <div class="number-block">
-      <div class="n">85.1<sub>%</sub></div>
-      <div class="nl">日本人口への<br>翌日配送カバー率</div>
-    </div>
-    <div class="number-block">
-      <div class="n">260<sub>カ国</sub></div>
-      <div class="nl">越境EC対応<br>世界への発送</div>
-    </div>
-    <div class="number-block">
-      <div class="n">30<sub>%</sub></div>
-      <div class="nl">高密度保管による<br>坪数削減効果</div>
-    </div>
+    <div class="number-block"><div class="n">95<sub>%</sub></div><div class="nl">最低5%削減<br>達成確率</div></div>
+    <div class="number-block"><div class="n">20<sub>%+</sub></div><div class="nl">60・80サイズ<br>コスト削減実績</div></div>
+    <div class="number-block"><div class="n" style="font-size:clamp(24px,3.5vw,44px);">0.00088<sub>%</sub></div><div class="nl">誤出荷率<br>（業界目標比1/11）</div></div>
+    <div class="number-block"><div class="n">85.1<sub>%</sub></div><div class="nl">日本人口への<br>翌日配送カバー率</div></div>
+    <div class="number-block"><div class="n">260<sub>カ国</sub></div><div class="nl">越境EC対応<br>世界への発送</div></div>
+    <div class="number-block"><div class="n">30<sub>%</sub></div><div class="nl">高密度保管による<br>坪数削減効果</div></div>
   </div>
 </div>
 
@@ -710,67 +392,101 @@
     <p class="section-label">5つの強み</p>
     <h2 class="section-title">なぜ選ばれるのか。<br><span>圧倒的な差別化ポイント</span></h2>
     <p class="section-desc">プロメーテウス合同会社 × 塚本郵便逓送だからこそ実現できる、他社にはない5つの強みをご紹介します。</p>
-
     <div class="strength-list">
 
       <div class="strength-item">
         <div class="strength-num">1</div>
         <div class="strength-content">
-          <h3>富山立地のBCP優位性｜道路整備率 日本一<span style="color:var(--orange)">74.1%</span></h3>
-          <p>
-            富山県は道路整備率が<strong>全国第1位74.1%</strong>で、物流の要として機能します。
-            震災リスクが極めて低く、北陸・首都圏・関西を結ぶ主要幹線にも近接。
-            大規模災害時でも安定した出荷継続が可能なBCP対応倉庫として、
-            御社のバックアップ拠点にもなり得ます。
-          </p>
+          <div class="str-icon-row">
+            <!-- Shield / BCP icon -->
+            <svg class="str-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <path d="M22 4 L34 9 L34 24 C34 31.5 22 38 22 38 C22 38 10 31.5 10 24 L10 9 Z" fill="#f5720a" opacity="0.9"/>
+              <polyline points="15.5,23 20,27.5 29,16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="8" y1="41" x2="36" y2="41" stroke="#f5720a" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+              <line x1="15" y1="38" x2="15" y2="43" stroke="#f5720a" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.4"/>
+              <line x1="22" y1="38" x2="22" y2="43" stroke="#f5720a" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.4"/>
+              <line x1="29" y1="38" x2="29" y2="43" stroke="#f5720a" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.4"/>
+            </svg>
+            <h3>富山立地のBCP優位性｜道路整備率 日本一<span style="color:var(--orange)">74.1%</span></h3>
+          </div>
+          <p>富山県は道路整備率が<strong>全国第1位74.1%</strong>で、物流の要として機能します。震災リスクが極めて低く、北陸・首都圏・関西を結ぶ主要幹線にも近接。大規模災害時でも安定した出荷継続が可能なBCP対応倉庫として、御社のバックアップ拠点にもなり得ます。</p>
         </div>
       </div>
 
       <div class="strength-item">
         <div class="strength-num">2</div>
         <div class="strength-content">
-          <h3>日本人口 <span style="color:var(--orange)">85.1%</span> へ翌日配送可能な広域配送網</h3>
-          <p>
-            塚本郵便逓送の確立した広域ネットワークにより、日本人口の<strong>85.1%をカバー</strong>する翌日配送を実現。
-            北海道・九州・沖縄を含む全国主要エリアへ、スピーディかつ安定した配送をお約束します。
-            配達スピードがそのままお客様満足度・リピート率に直結します。
-          </p>
+          <div class="str-icon-row">
+            <!-- Signal / coverage icon -->
+            <svg class="str-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <circle cx="22" cy="30" r="4" fill="#f5720a"/>
+              <line x1="22" y1="34" x2="22" y2="42" stroke="#f5720a" stroke-width="2" stroke-linecap="round"/>
+              <line x1="17" y1="41" x2="27" y2="41" stroke="#f5720a" stroke-width="2" stroke-linecap="round"/>
+              <path d="M14 25 C14 20.6 17.6 17 22 17 C26.4 17 30 20.6 30 25" stroke="#f5720a" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M8 19 C8 11.3 14.3 5 22 5 C29.7 5 36 11.3 36 19" stroke="#f5720a" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+            </svg>
+            <h3>日本人口 <span style="color:var(--orange)">85.1%</span> へ翌日配送可能な広域配送網</h3>
+          </div>
+          <p>塚本郵便逓送の確立した広域ネットワークにより、日本人口の<strong>85.1%をカバー</strong>する翌日配送を実現。北海道・九州・沖縄を含む全国主要エリアへ、スピーディかつ安定した配送をお約束します。配達スピードがそのままお客様満足度・リピート率に直結します。</p>
         </div>
       </div>
 
       <div class="strength-item">
         <div class="strength-num">3</div>
         <div class="strength-content">
-          <h3>北陸No.1 ゆうパケット取扱量｜高密度保管で坪数 <span style="color:var(--orange)">30%</span> 削減</h3>
-          <p>
-            塚本郵便逓送は<strong>北陸地域No.1のゆうパケット取扱量</strong>を誇り、ボリュームディスカウントの恩恵を最大限に享受。
-            60・80サイズでは<strong>20%以上のコスト削減</strong>実績があります。
-            さらに独自の高密度保管技術により、同量の荷物を<strong>従来比30%少ない坪数</strong>で管理可能。保管コストも同時に圧縮します。
-          </p>
+          <div class="str-icon-row">
+            <!-- Warehouse / box icon -->
+            <svg class="str-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <rect x="6" y="18" width="32" height="24" rx="2" fill="rgba(245,114,10,0.12)" stroke="#f5720a" stroke-width="1.8"/>
+              <polyline points="4,18 22,6 40,18" stroke="#f5720a" stroke-width="1.8" stroke-linejoin="round"/>
+              <rect x="10" y="28" width="9" height="14" rx="1" fill="#f5720a" opacity="0.45"/>
+              <rect x="25" y="28" width="9" height="14" rx="1" fill="#f5720a" opacity="0.45"/>
+              <rect x="18" y="21" width="8" height="7" rx="1" fill="#f5720a" opacity="0.65"/>
+              <!-- stacked boxes inside -->
+              <line x1="35" y1="28" x2="35" y2="42" stroke="rgba(245,114,10,0.3)" stroke-width="1"/>
+            </svg>
+            <h3>北陸No.1 ゆうパケット取扱量｜高密度保管で坪数 <span style="color:var(--orange)">30%</span> 削減</h3>
+          </div>
+          <p>塚本郵便逓送は<strong>北陸地域No.1のゆうパケット取扱量</strong>を誇り、ボリュームディスカウントの恩恵を最大限に享受。60・80サイズでは<strong>20%以上のコスト削減</strong>実績があります。さらに独自の高密度保管技術により、同量の荷物を<strong>従来比30%少ない坪数</strong>で管理可能。保管コストも同時に圧縮します。</p>
         </div>
       </div>
 
       <div class="strength-item">
         <div class="strength-num">4</div>
         <div class="strength-content">
-          <h3>誤出荷率 <span style="color:var(--orange)">0.00088%</span>｜全出荷録画「テモトル」システム</h3>
-          <p>
-            業界目標値0.01%に対し、<strong>0.00088%という驚異の誤出荷率</strong>を実現（約1/11）。
-            独自の全出荷録画システム「<strong>テモトル</strong>」が全ての出荷作業をリアルタイム記録し、
-            万が一のトラブル時も映像で即座に確認・対応。
-            クレーム対応工数の大幅削減と、ブランド信頼の維持に貢献します。
-          </p>
+          <div class="str-icon-row">
+            <!-- Camera / check icon -->
+            <svg class="str-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <rect x="4" y="12" width="28" height="20" rx="3" fill="rgba(245,114,10,0.1)" stroke="#f5720a" stroke-width="1.8"/>
+              <polygon points="32,17 40,14 40,30 32,27" fill="#f5720a" opacity="0.65"/>
+              <circle cx="18" cy="22" r="5.5" fill="#f5720a" opacity="0.55"/>
+              <circle cx="18" cy="22" r="3" fill="#f5720a"/>
+              <circle cx="34" cy="35" r="7.5" fill="#f5720a"/>
+              <polyline points="30.5,35 33,37.5 37.5,31.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>誤出荷率 <span style="color:var(--orange)">0.00088%</span>｜全出荷録画「テモトル」システム</h3>
+          </div>
+          <p>業界目標値0.01%に対し、<strong>0.00088%という驚異の誤出荷率</strong>を実現（約1/11）。独自の全出荷録画システム「<strong>テモトル</strong>」が全ての出荷作業をリアルタイム記録し、万が一のトラブル時も映像で即座に確認・対応。クレーム対応工数の大幅削減と、ブランド信頼の維持に貢献します。</p>
         </div>
       </div>
 
       <div class="strength-item">
         <div class="strength-num">5</div>
         <div class="strength-content">
-          <h3>3温度帯対応倉庫｜世界 <span style="color:var(--orange)">260カ国</span> 越境EC対応</h3>
-          <p>
-            常温・冷蔵・冷凍の<strong>3温度帯に対応した倉庫設備</strong>を完備。食品・化粧品・医薬品など温度管理が必要な商品も安心して委託いただけます。
-            さらに<strong>世界260カ国以上への越境EC発送</strong>にも対応し、グローバル展開を検討中のEC事業者様のニーズにも応えます。
-          </p>
+          <div class="str-icon-row">
+            <!-- Globe icon -->
+            <svg class="str-icon" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <circle cx="22" cy="22" r="18" stroke="#f5720a" stroke-width="1.8" fill="rgba(245,114,10,0.08)"/>
+              <line x1="4" y1="22" x2="40" y2="22" stroke="#f5720a" stroke-width="1.2" opacity="0.6"/>
+              <path d="M22 4 C16 9 16 35 22 40 C28 35 28 9 22 4" stroke="#f5720a" stroke-width="1.2" opacity="0.6"/>
+              <path d="M10 14 C13 12 31 12 34 14" stroke="#f5720a" stroke-width="1" opacity="0.4"/>
+              <path d="M10 30 C13 32 31 32 34 30" stroke="#f5720a" stroke-width="1" opacity="0.4"/>
+              <circle cx="29" cy="17" r="3" fill="#f5720a"/>
+              <circle cx="29" cy="17" r="6" stroke="#f5720a" stroke-width="1" opacity="0.35"/>
+            </svg>
+            <h3>3温度帯対応倉庫｜世界 <span style="color:var(--orange)">260カ国</span> 越境EC対応</h3>
+          </div>
+          <p>常温・冷蔵・冷凍の<strong>3温度帯に対応した倉庫設備</strong>を完備。食品・化粧品・医薬品など温度管理が必要な商品も安心して委託いただけます。さらに<strong>世界260カ国以上への越境EC発送</strong>にも対応し、グローバル展開を検討中のEC事業者様のニーズにも応えます。</p>
         </div>
       </div>
 
@@ -782,9 +498,19 @@
 <section class="flow">
   <div class="section-inner">
     <p class="section-label">ご利用の流れ</p>
-    <h2 class="section-title">最短 <span>2週間</span> で切り替え完了</h2>
+    <div class="flow-head-deco">
+      <svg width="48" height="32" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <rect x="0" y="6" width="30" height="20" rx="3" fill="#162a6e"/>
+        <rect x="0" y="6" width="30" height="4" rx="2" fill="#f5720a"/>
+        <path d="M30 11 L44 11 L48 17 L48 26 L30 26 Z" fill="#0d1f4e"/>
+        <rect x="31" y="13" width="12" height="8" rx="2" fill="#7ec8f0" opacity="0.5"/>
+        <circle cx="8" cy="28" r="4" fill="#08142f" stroke="#f5720a" stroke-width="1.5"/>
+        <circle cx="22" cy="28" r="4" fill="#08142f" stroke="#f5720a" stroke-width="1.5"/>
+        <circle cx="40" cy="28" r="4" fill="#08142f" stroke="#f5720a" stroke-width="1.5"/>
+      </svg>
+      <h2 class="section-title" style="margin-bottom:0;">最短 <span>2週間</span> で切り替え完了</h2>
+    </div>
     <p class="section-desc">無料診断から契約・運用開始まで、専任担当者がワンストップでサポートします。</p>
-
     <div class="flow-steps">
       <div class="flow-step">
         <div class="flow-step-num">1</div>
@@ -807,22 +533,88 @@
         <p>最短2週間で本稼働。切り替え後も継続的に最適化</p>
       </div>
     </div>
+    <!-- Decorative package row -->
+    <div class="flow-pkg-row">
+      <svg width="38" height="38" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <polygon points="22,4 40,13 22,22 4,13" fill="#f5720a" opacity="0.7"/>
+        <polygon points="4,13 22,22 22,40 4,31" fill="#0d1f4e" opacity="0.8"/>
+        <polygon points="40,13 22,22 22,40 40,31" fill="#162a6e" opacity="0.8"/>
+        <line x1="22" y1="4" x2="22" y2="22" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+        <line x1="4" y1="13" x2="40" y2="13" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+      </svg>
+      <svg width="28" height="28" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <polygon points="22,4 40,13 22,22 4,13" fill="#f5720a" opacity="0.5"/>
+        <polygon points="4,13 22,22 22,40 4,31" fill="#0d1f4e" opacity="0.6"/>
+        <polygon points="40,13 22,22 22,40 40,31" fill="#162a6e" opacity="0.6"/>
+        <line x1="22" y1="4" x2="22" y2="22" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+        <line x1="4" y1="13" x2="40" y2="13" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+      </svg>
+      <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <polygon points="22,4 40,13 22,22 4,13" fill="#f5720a" opacity="0.85"/>
+        <polygon points="4,13 22,22 22,40 4,31" fill="#0d1f4e"/>
+        <polygon points="40,13 22,22 22,40 40,31" fill="#162a6e"/>
+        <line x1="22" y1="4" x2="22" y2="22" stroke="rgba(255,255,255,0.35)" stroke-width="2.5"/>
+        <line x1="4" y1="13" x2="40" y2="13" stroke="rgba(255,255,255,0.35)" stroke-width="2.5"/>
+      </svg>
+      <svg width="28" height="28" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <polygon points="22,4 40,13 22,22 4,13" fill="#f5720a" opacity="0.5"/>
+        <polygon points="4,13 22,22 22,40 4,31" fill="#0d1f4e" opacity="0.6"/>
+        <polygon points="40,13 22,22 22,40 40,31" fill="#162a6e" opacity="0.6"/>
+        <line x1="22" y1="4" x2="22" y2="22" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+        <line x1="4" y1="13" x2="40" y2="13" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+      </svg>
+      <svg width="38" height="38" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <polygon points="22,4 40,13 22,22 4,13" fill="#f5720a" opacity="0.7"/>
+        <polygon points="4,13 22,22 22,40 4,31" fill="#0d1f4e" opacity="0.8"/>
+        <polygon points="40,13 22,22 22,40 40,31" fill="#162a6e" opacity="0.8"/>
+        <line x1="22" y1="4" x2="22" y2="22" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+        <line x1="4" y1="13" x2="40" y2="13" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+      </svg>
+    </div>
   </div>
 </section>
 
-<!-- CTA SECTION -->
+<!-- CTA -->
 <section class="cta-section" id="contact">
+  <!-- Background decorations -->
+  <div class="cta-deco cta-deco-globe">
+    <svg viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="170" cy="170" r="165" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.03)"/>
+      <line x1="5" y1="170" x2="335" y2="170" stroke="white" stroke-width="1.2"/>
+      <path d="M170 5 C130 50 130 290 170 335 C210 290 210 50 170 5" stroke="white" stroke-width="1.2"/>
+      <path d="M50 100 C80 88 260 88 290 100" stroke="white" stroke-width="0.8" opacity="0.6"/>
+      <path d="M20 170" stroke="white"/>
+      <path d="M30 240 C70 228 270 228 310 240" stroke="white" stroke-width="0.8" opacity="0.6"/>
+      <path d="M50 100 C80 112 260 112 290 100" stroke="white" stroke-width="0.8" opacity="0.3"/>
+      <line x1="5" y1="130" x2="335" y2="130" stroke="white" stroke-width="0.7" opacity="0.4"/>
+      <line x1="5" y1="210" x2="335" y2="210" stroke="white" stroke-width="0.7" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="cta-deco cta-deco-box1">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <polygon points="50,8 90,28 50,48 10,28" fill="white"/>
+      <polygon points="10,28 50,48 50,92 10,72" fill="rgba(255,255,255,0.5)"/>
+      <polygon points="90,28 50,48 50,92 90,72" fill="rgba(255,255,255,0.7)"/>
+      <line x1="50" y1="8" x2="50" y2="48" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+      <line x1="10" y1="28" x2="90" y2="28" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="cta-deco cta-deco-box2">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <polygon points="50,8 90,28 50,48 10,28" fill="white"/>
+      <polygon points="10,28 50,48 50,92 10,72" fill="rgba(255,255,255,0.5)"/>
+      <polygon points="90,28 50,48 50,92 90,72" fill="rgba(255,255,255,0.7)"/>
+      <line x1="50" y1="8" x2="50" y2="48" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+      <line x1="10" y1="28" x2="90" y2="28" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
+    </svg>
+  </div>
+
   <div class="section-inner">
     <p class="section-label" style="color:var(--orange);">無料・物流コスト診断</p>
     <h2 class="section-title">まず、御社の配送コストを<br><span>診断してみませんか？</span></h2>
-    <p class="section-desc">
-      現在のご利用状況をお伺いするだけで、どのくらい削減できるかを無料でお伝えします。<br>
-      しつこい営業は一切ありません。お気軽にご連絡ください。
-    </p>
-
+    <p class="section-desc">現在のご利用状況をお伺いするだけで、どのくらい削減できるかを無料でお伝えします。<br>しつこい営業は一切ありません。お気軽にご連絡ください。</p>
     <div class="contact-card">
       <h3>お問い合わせ先</h3>
-
       <div class="contact-info-row">
         <div class="ci-icon">🏢</div>
         <div>
@@ -830,7 +622,6 @@
           <strong>プロメーテウス合同会社　嶋津 貴広</strong>
         </div>
       </div>
-
       <div class="contact-info-row">
         <div class="ci-icon">📞</div>
         <div>
@@ -838,7 +629,6 @@
           <a href="tel:050-7115-5456"><strong>050-7115-5456</strong></a>
         </div>
       </div>
-
       <div class="contact-info-row">
         <div class="ci-icon">✉️</div>
         <div>
@@ -846,21 +636,18 @@
           <a href="mailto:shimazu@ptome-theus.com">shimazu@ptome-theus.com</a>
         </div>
       </div>
-
       <a href="mailto:shimazu@ptome-theus.com?subject=【無料物流コスト診断のご依頼】&body=お名前：%0A会社名：%0A電話番号：%0A月間配送個口数：%0Aご相談内容：" class="btn-primary">今すぐ無料診断を依頼する →</a>
       <p style="font-size:12px;color:var(--gray);margin-top:12px;text-align:center;">受付時間：平日 9:00〜18:00</p>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>プロメーテウス合同会社 × 塚本郵便逓送株式会社</p>
   <p style="margin-top:4px;">次世代・最適化ロジスティクス｜無料物流コスト診断</p>
   <p style="margin-top:12px;">© 2024 Prometheus LLC. All rights reserved.</p>
 </footer>
 
-<!-- FLOATING CTA (mobile) -->
 <a href="#contact" class="float-cta">無料コスト診断を受ける →</a>
 
 </body>
