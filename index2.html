@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>次世代・最適化ロジスティクス｜プロメーテウス合同会社 × 塚本郵便逓送</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1f4e;
+      --navy-dark: #08142f;
+      --navy-mid: #162a6e;
+      --orange: #f5720a;
+      --orange-light: #ff8c2a;
+      --orange-pale: #fff4ec;
+      --white: #ffffff;
+      --gray-light: #f5f7fa;
+      --gray: #6b7280;
+      --text: #1a202c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ======== HEADER ======== */
+    header {
+      background: var(--navy-dark);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+
+    .header-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .header-logo .co-names {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.03em;
+    }
+
+    .header-logo .service-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .header-logo .service-name span { color: var(--orange); }
+
+    .header-cta {
+      background: var(--orange);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .header-cta:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+    /* ======== HERO ======== */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 60%, #1a3a8a 100%);
+      padding: 80px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 50px;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .hero-target {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 5.5vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 .highlight {
+      color: var(--orange);
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 48px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ======== HERO STATS ======== */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto 48px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 24px 16px;
+      backdrop-filter: blur(4px);
+    }
+
+    .stat-card .num {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-card .unit {
+      font-size: clamp(14px, 2.5vw, 22px);
+      font-weight: 900;
+      color: var(--orange);
+    }
+
+    .stat-card .label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 8px;
+      display: block;
+      line-height: 1.5;
+    }
+
+    .hero-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      padding: 18px 48px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      box-shadow: 0 6px 32px rgba(245,114,10,0.45);
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-light);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(245,114,10,0.55);
+    }
+
+    .btn-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ======== SECTION BASE ======== */
+    section { padding: 80px 24px; }
+
+    .section-inner { max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .section-title span { color: var(--orange); }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--gray);
+      max-width: 640px;
+    }
+
+    /* ======== PROBLEM ======== */
+    .problem { background: var(--gray-light); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .problem-item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px 20px;
+      border-left: 4px solid var(--orange);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .problem-item .icon { font-size: 28px; margin-bottom: 10px; }
+
+    .problem-item p {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ======== STRENGTHS ======== */
+    .strengths { background: var(--white); }
+
+    .strength-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .strength-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      align-items: start;
+      background: var(--gray-light);
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid #e8ecf3;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .strength-item:hover {
+      box-shadow: 0 8px 32px rgba(13,31,78,0.1);
+      transform: translateY(-2px);
+    }
+
+    .strength-num {
+      width: 72px;
+      height: 72px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .strength-content h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .strength-content p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    .strength-content .big-stat {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      color: var(--orange);
+      display: inline;
+    }
+
+    .strength-content .big-stat-unit {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    /* ======== NUMBERS BAND ======== */
+    .numbers-band {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy-mid));
+      padding: 64px 24px;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2px;
+      max-width: 960px;
+      margin: 40px auto 0;
+    }
+
+    .number-block {
+      padding: 36px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .number-block:last-child { border-right: none; }
+
+    .number-block .n {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .number-block .n sub {
+      font-size: 0.45em;
+      vertical-align: baseline;
+      font-weight: 700;
+    }
+
+    .number-block .nl {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    /* ======== FLOW ======== */
+    .flow { background: var(--gray-light); }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      margin-top: 48px;
+      position: relative;
+    }
+
+    .flow-step {
+      text-align: center;
+      padding: 32px 20px;
+      position: relative;
+    }
+
+    .flow-step::after {
+      content: '→';
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .flow-step:last-child::after { display: none; }
+
+    .flow-step-num {
+      width: 52px;
+      height: 52px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--white);
+      margin: 0 auto 16px;
+    }
+
+    .flow-step h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .flow-step p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ======== CTA SECTION ======== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, #1a3a8a 100%);
+      padding: 96px 24px;
+      text-align: center;
+    }
+
+    .cta-section .section-title { color: var(--white); }
+
+    .cta-section .section-desc {
+      color: rgba(255,255,255,0.7);
+      margin: 0 auto 48px;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 600px;
+      margin: 48px auto 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .contact-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e8ecf3;
+    }
+
+    .contact-info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .contact-info-row .ci-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--orange-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-info-row a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-info-row a:hover { color: var(--orange); }
+
+    .contact-card .btn-primary {
+      width: 100%;
+      text-align: center;
+      margin-top: 28px;
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+
+    /* ======== FOOTER ======== */
+    footer {
+      background: var(--navy-dark);
+      padding: 32px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* ======== FLOATING CTA ======== */
+    .float-cta {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      background: var(--orange);
+      color: var(--white);
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 6px 28px rgba(245,114,10,0.5);
+      white-space: nowrap;
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 6px 28px rgba(245,114,10,0.5); }
+      50% { box-shadow: 0 6px 40px rgba(245,114,10,0.8); }
+    }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 640px) {
+      header { padding: 12px 16px; }
+      .header-cta { padding: 8px 14px; font-size: 12px; }
+
+      section { padding: 60px 16px; }
+
+      .hero { padding: 60px 16px 56px; }
+
+      .hero-stats { grid-template-columns: 1fr; gap: 12px; }
+
+      .stat-card { padding: 20px 16px; display: flex; align-items: center; gap: 16px; text-align: left; }
+      .stat-card .label { margin-top: 2px; }
+
+      .strength-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 24px 20px;
+      }
+
+      .strength-num { width: 52px; height: 52px; font-size: 22px; }
+
+      .flow-step::after { display: none; }
+
+      .contact-card { padding: 32px 24px; }
+
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+      .number-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .number-block:nth-child(even) { border-right: none; }
+
+      .float-cta { display: block; }
+    }
+
+    @media (min-width: 641px) and (max-width: 900px) {
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+      .strength-item { grid-template-columns: 72px 1fr; }
+    }
+
+    /* ======== DIVIDER ======== */
+    .orange-divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--orange-light), var(--orange));
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">
+    <span class="co-names">プロメーテウス合同会社 × 塚本郵便逓送株式会社</span>
+    <span class="service-name">次世代・<span>最適化ロジスティクス</span></span>
+  </div>
+  <a href="#contact" class="header-cta">無料診断を受ける</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">月800個口以上のEC事業者様へ</div>
+  <p class="hero-target">配送コストに課題を感じていませんか？</p>
+  <h1>
+    配送コストを<br>
+    <span class="highlight">最低5%以上</span>、確実に削減する<br>
+    次世代ロジスティクス
+  </h1>
+  <p class="hero-sub">
+    富山発・全国対応。誤出荷率業界最低水準の完全管理体制で、<br>
+    御社の物流を根本から最適化します。
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div>
+        <span class="num">95<span class="unit">%</span></span>
+        <span class="label">最低5%コスト削減の達成確率</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <span class="num">20<span class="unit">%<br><small style="font-size:0.5em;font-weight:700;">以上</small></span></span>
+        <span class="label">60・80サイズでのコスト削減実績</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <span class="num" style="font-size:clamp(22px,4vw,36px);">0.00088<span class="unit">%</span></span>
+        <span class="label">誤出荷率（業界目標値0.01%を大幅クリア）</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cta-wrap">
+    <a href="#contact" class="btn-primary">無料・物流コスト診断を受ける →</a>
+    <span class="btn-note">診断は完全無料・しつこい営業は一切ありません</span>
+  </div>
+</section>
+
+<div class="orange-divider"></div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="section-inner">
+    <p class="section-label">こんなお悩みはありませんか？</p>
+    <h2 class="section-title">EC物流の<span>コスト・品質問題</span>、<br>もう諦めていませんか？</h2>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="icon">📦</div>
+        <p>配送料の値上がりで利益率が年々悪化している</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">⚠️</div>
+        <p>誤出荷・遅延クレームが後を絶たない</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">🏭</div>
+        <p>倉庫スペースが足りず、保管コストが膨らんでいる</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">🌐</div>
+        <p>海外向けEC・冷凍冷蔵品の対応が難しい</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">🔍</div>
+        <p>自社の物流コストが適正かどうか分からない</p>
+      </div>
+      <div class="problem-item">
+        <div class="icon">🛡️</div>
+        <p>災害・物流停止リスクへの備えができていない</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS BAND -->
+<div class="numbers-band">
+  <div class="section-inner" style="text-align:center;">
+    <p class="section-label" style="color:var(--orange);">実績・数字で見る安心感</p>
+    <h2 class="section-title" style="color:var(--white);">数字が証明する、<span>圧倒的な実績</span></h2>
+  </div>
+  <div class="numbers-grid">
+    <div class="number-block">
+      <div class="n">95<sub>%</sub></div>
+      <div class="nl">最低5%削減<br>達成確率</div>
+    </div>
+    <div class="number-block">
+      <div class="n">20<sub>%+</sub></div>
+      <div class="nl">60・80サイズ<br>コスト削減実績</div>
+    </div>
+    <div class="number-block">
+      <div class="n" style="font-size:clamp(24px,3.5vw,44px);">0.00088<sub>%</sub></div>
+      <div class="nl">誤出荷率<br>（業界目標比1/11）</div>
+    </div>
+    <div class="number-block">
+      <div class="n">85.1<sub>%</sub></div>
+      <div class="nl">日本人口への<br>翌日配送カバー率</div>
+    </div>
+    <div class="number-block">
+      <div class="n">260<sub>カ国</sub></div>
+      <div class="nl">越境EC対応<br>世界への発送</div>
+    </div>
+    <div class="number-block">
+      <div class="n">30<sub>%</sub></div>
+      <div class="nl">高密度保管による<br>坪数削減効果</div>
+    </div>
+  </div>
+</div>
+
+<!-- STRENGTHS -->
+<section class="strengths" id="strengths">
+  <div class="section-inner">
+    <p class="section-label">5つの強み</p>
+    <h2 class="section-title">なぜ選ばれるのか。<br><span>圧倒的な差別化ポイント</span></h2>
+    <p class="section-desc">プロメーテウス合同会社 × 塚本郵便逓送だからこそ実現できる、他社にはない5つの強みをご紹介します。</p>
+
+    <div class="strength-list">
+
+      <div class="strength-item">
+        <div class="strength-num">1</div>
+        <div class="strength-content">
+          <h3>富山立地のBCP優位性｜道路整備率 日本一<span style="color:var(--orange)">74.1%</span></h3>
+          <p>
+            富山県は道路整備率が<strong>全国第1位74.1%</strong>で、物流の要として機能します。
+            震災リスクが極めて低く、北陸・首都圏・関西を結ぶ主要幹線にも近接。
+            大規模災害時でも安定した出荷継続が可能なBCP対応倉庫として、
+            御社のバックアップ拠点にもなり得ます。
+          </p>
+        </div>
+      </div>
+
+      <div class="strength-item">
+        <div class="strength-num">2</div>
+        <div class="strength-content">
+          <h3>日本人口 <span style="color:var(--orange)">85.1%</span> へ翌日配送可能な広域配送網</h3>
+          <p>
+            塚本郵便逓送の確立した広域ネットワークにより、日本人口の<strong>85.1%をカバー</strong>する翌日配送を実現。
+            北海道・九州・沖縄を含む全国主要エリアへ、スピーディかつ安定した配送をお約束します。
+            配達スピードがそのままお客様満足度・リピート率に直結します。
+          </p>
+        </div>
+      </div>
+
+      <div class="strength-item">
+        <div class="strength-num">3</div>
+        <div class="strength-content">
+          <h3>北陸No.1 ゆうパケット取扱量｜高密度保管で坪数 <span style="color:var(--orange)">30%</span> 削減</h3>
+          <p>
+            塚本郵便逓送は<strong>北陸地域No.1のゆうパケット取扱量</strong>を誇り、ボリュームディスカウントの恩恵を最大限に享受。
+            60・80サイズでは<strong>20%以上のコスト削減</strong>実績があります。
+            さらに独自の高密度保管技術により、同量の荷物を<strong>従来比30%少ない坪数</strong>で管理可能。保管コストも同時に圧縮します。
+          </p>
+        </div>
+      </div>
+
+      <div class="strength-item">
+        <div class="strength-num">4</div>
+        <div class="strength-content">
+          <h3>誤出荷率 <span style="color:var(--orange)">0.00088%</span>｜全出荷録画「テモトル」システム</h3>
+          <p>
+            業界目標値0.01%に対し、<strong>0.00088%という驚異の誤出荷率</strong>を実現（約1/11）。
+            独自の全出荷録画システム「<strong>テモトル</strong>」が全ての出荷作業をリアルタイム記録し、
+            万が一のトラブル時も映像で即座に確認・対応。
+            クレーム対応工数の大幅削減と、ブランド信頼の維持に貢献します。
+          </p>
+        </div>
+      </div>
+
+      <div class="strength-item">
+        <div class="strength-num">5</div>
+        <div class="strength-content">
+          <h3>3温度帯対応倉庫｜世界 <span style="color:var(--orange)">260カ国</span> 越境EC対応</h3>
+          <p>
+            常温・冷蔵・冷凍の<strong>3温度帯に対応した倉庫設備</strong>を完備。食品・化粧品・医薬品など温度管理が必要な商品も安心して委託いただけます。
+            さらに<strong>世界260カ国以上への越境EC発送</strong>にも対応し、グローバル展開を検討中のEC事業者様のニーズにも応えます。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow">
+  <div class="section-inner">
+    <p class="section-label">ご利用の流れ</p>
+    <h2 class="section-title">最短 <span>2週間</span> で切り替え完了</h2>
+    <p class="section-desc">無料診断から契約・運用開始まで、専任担当者がワンストップでサポートします。</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <h3>無料コスト診断</h3>
+        <p>現状の配送データをお伺いし、削減シミュレーションをご提示します</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <h3>ご提案・お見積り</h3>
+        <p>最適なプランと明確なコスト削減額をご提案します</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <h3>契約・移行準備</h3>
+        <p>専任担当が在庫移管・システム連携をフルサポート</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">4</div>
+        <h3>運用開始</h3>
+        <p>最短2週間で本稼働。切り替え後も継続的に最適化</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section" id="contact">
+  <div class="section-inner">
+    <p class="section-label" style="color:var(--orange);">無料・物流コスト診断</p>
+    <h2 class="section-title">まず、御社の配送コストを<br><span>診断してみませんか？</span></h2>
+    <p class="section-desc">
+      現在のご利用状況をお伺いするだけで、どのくらい削減できるかを無料でお伝えします。<br>
+      しつこい営業は一切ありません。お気軽にご連絡ください。
+    </p>
+
+    <div class="contact-card">
+      <h3>お問い合わせ先</h3>
+
+      <div class="contact-info-row">
+        <div class="ci-icon">🏢</div>
+        <div>
+          <div style="font-size:12px;color:var(--gray);margin-bottom:2px;">担当者</div>
+          <strong>プロメーテウス合同会社　嶋津 貴広</strong>
+        </div>
+      </div>
+
+      <div class="contact-info-row">
+        <div class="ci-icon">📞</div>
+        <div>
+          <div style="font-size:12px;color:var(--gray);margin-bottom:2px;">電話番号</div>
+          <a href="tel:050-7115-5456"><strong>050-7115-5456</strong></a>
+        </div>
+      </div>
+
+      <div class="contact-info-row">
+        <div class="ci-icon">✉️</div>
+        <div>
+          <div style="font-size:12px;color:var(--gray);margin-bottom:2px;">メールアドレス</div>
+          <a href="mailto:shimazu@ptome-theus.com">shimazu@ptome-theus.com</a>
+        </div>
+      </div>
+
+      <a href="tel:050-7115-5456" class="btn-primary">今すぐ無料診断を依頼する →</a>
+      <p style="font-size:12px;color:var(--gray);margin-top:12px;text-align:center;">受付時間：平日 9:00〜18:00</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>プロメーテウス合同会社 × 塚本郵便逓送株式会社</p>
+  <p style="margin-top:4px;">次世代・最適化ロジスティクス｜無料物流コスト診断</p>
+  <p style="margin-top:12px;">© 2024 Prometheus LLC. All rights reserved.</p>
+</footer>
+
+<!-- FLOATING CTA (mobile) -->
+<a href="#contact" class="float-cta">無料コスト診断を受ける →</a>
+
+</body>
+</html>
